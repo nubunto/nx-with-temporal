@@ -4,10 +4,15 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {},
   "devDependencies": {
     "@nx/js": "17.2.6",
+    "@nx/node": "^17.2.6",
     "@nx/workspace": "17.2.6",
     "nx": "17.2.6"
+  },
+  "dependencies": {
+    "@temporalio/client": "^1.8.6",
+    "@temporalio/worker": "^1.8.6",
+    "@temporalio/workflow": "^1.8.6"
   }
 }
