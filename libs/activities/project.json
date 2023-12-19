@@ -1,0 +1,30 @@
+{
+  "name": "activities",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/activities/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/activities",
+        "main": "libs/activities/src/index.ts",
+        "tsConfig": "libs/activities/tsconfig.lib.json",
+        "assets": ["libs/activities/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/activities/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

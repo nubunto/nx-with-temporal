@@ -1,0 +1,23 @@
+{
+  "name": "workflows",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/workflows/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/workflows",
+        "main": "libs/workflows/src/index.ts",
+        "tsConfig": "libs/workflows/tsconfig.lib.json",
+        "assets": ["libs/workflows/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

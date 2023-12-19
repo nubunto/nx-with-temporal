@@ -1,0 +1,81 @@
+{
+  "name": "temporal-worker",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "temporal-worker/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "{workspaceRoot}/dist/apps/temporal-worker",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/temporal-worker/src/main.ts",
+        "tsConfig": "apps/temporal-worker/tsconfig.app.json",
+        "assets": ["apps/temporal-worker/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "bundle": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "commands": [
+          "rm -rf apps/temporal-worker/src/workflows/workflow-bundle.js",
+          "node apps/temporal-worker/src/scripts/build-workflow-bundle.js"
+        ],
+        "parallel": false
+      },
+      "configurations": {}
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "temporal-worker:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "temporal-worker:build:development"
+        },
+        "production": {
+          "buildTarget": "temporal-worker:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "temporal-worker/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
