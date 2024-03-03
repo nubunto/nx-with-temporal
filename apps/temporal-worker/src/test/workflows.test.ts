@@ -23,7 +23,7 @@ describe('Example workflow', () => {
     const worker = await Worker.create({
       connection: nativeConnection,
       taskQueue,
-      workflowsPath: require.resolve('../workflows'),
+      workflowsPath: require.resolve('@nx-temporal/workflows'),
       activities,
     });
 
