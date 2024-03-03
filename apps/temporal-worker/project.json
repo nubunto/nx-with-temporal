@@ -73,7 +73,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "temporal-worker/jest.config.ts"
+        "jestConfig": "apps/temporal-worker/jest.config.ts"
       }
     }
   },
