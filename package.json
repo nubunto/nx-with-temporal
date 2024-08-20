@@ -38,5 +38,8 @@
     "@temporalio/workflow": "^1.11.1",
     "axios": "^1.7.4",
     "tslib": "^2.6.3"
+  },
+  "volta": {
+    "node": "20.16.0"
   }
 }
